@@ -1,0 +1,15 @@
+# file.yml
+
+input_filename: "/home/seanmurphy/Downloads/CMS Data/MUP_PHY_R22_P05_V10_D20_Geo.csv"
+dump_throttle : 1000
+dump_header: yes
+column_delimiter : ","
+number_of_columns: 15
+findings_filename : "findings.txt"
+
+options:
+  - Rndrng_Prvdr_Geo_Lvl:
+      echo: true
+      distribution: false
+
+
