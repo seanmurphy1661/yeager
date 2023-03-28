@@ -7,7 +7,6 @@ def printit(): print("im here")
 
 
 config = yconfig("./config/file.yaml")
-config.dump_yaml()
 findings = finding("test")
 print("*******************************************")
 print(f"Using config: {config.filename()}")
@@ -50,16 +49,12 @@ with open(config.input_filename()) as f:
         if len(current_rec) != config.number_of_columns():
             finding.add_finding(f"Row {line_counter}:Number of Columns Error")
 
-        
-        
-
         if line_counter == config.dump_throttle() :
             break
 
 findings.add_finding(f"Rows checked {line_counter}")
 print("Findings")
 for wstr in findings.get_findings():
-    print(wstr)
-
+    print(f"{wstr[0]} : {wstr[1]}")
 
 

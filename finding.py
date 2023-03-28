@@ -1,3 +1,5 @@
+import datetime 
+
 class finding:
     """Handler for  findings"""
 
@@ -5,9 +7,10 @@ class finding:
         """Initialize object"""
         self.filename = filename
         self.findings = []
+        self.add_finding(f"Object:{self.filename} created")
 
     def add_finding(self,string):
-        self.findings.append(string)
+        self.findings.append([datetime.datetime.now(),string])
 
     def get_findings(self):
         return self.findings
