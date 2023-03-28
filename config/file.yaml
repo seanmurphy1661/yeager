@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # file.yaml
+=======
+# file.yml
+>>>>>>> 230442e5d9139073d23a9cb2811fe3922810adaa
 
 input_filename: "/home/seanmurphy/Downloads/CMS Data/MUP_PHY_R22_P05_V10_D20_Geo.csv"
 dump_throttle : 1000
