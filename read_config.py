@@ -6,7 +6,7 @@ from finding import finding
 def printit(): print("im here")
 
 
-config = yconfig("./config/meatball-bike.yaml")
+config = yconfig("./config/file.yaml")
 config.dump_yaml()
 findings = finding("test")
 print("*******************************************")
