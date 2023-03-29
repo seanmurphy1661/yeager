@@ -6,16 +6,9 @@ from finding import finding
 def printit(): print("im here")
 
 
-config = yconfig("./config/meatball-bike.yaml")
-config.dump_yaml()
-findings = finding("test")
-print("*******************************************")
-print(f"Using config: {config.filename()}")
-print(f"Throttle at: {config.dump_throttle()}")
-print(f"Column Delimiter: {config.column_delimiter()}")
-print(f"Input file: {config.input_filename()}")
-print(f"Findings file: {config.findings_filename()}")
-print("*******************************************")
+config = yconfig("./config/file.yaml")
+config.dump_yaml(True)
+findings = finding(config.findings_filename())
 
 field_list = []
 current_rec = []
@@ -55,7 +48,6 @@ with open(config.input_filename()) as f:
 
 findings.add_finding(f"Rows checked {line_counter}")
 print("Findings")
-for wstr in findings.get_findings():
-    print(f"{wstr[0]} : {wstr[1]}")
+findings.dump_findings()
 
 

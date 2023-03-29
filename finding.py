@@ -14,3 +14,7 @@ class finding:
 
     def get_findings(self):
         return self.findings
+    
+    def dump_findings(self):
+        for wstr in self.findings:
+            print(f"{wstr[0]} : {wstr[1]}")

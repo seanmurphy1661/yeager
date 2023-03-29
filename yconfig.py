@@ -23,9 +23,18 @@ class yconfig:
         """Return the raw yaml config"""
         return self.yaml
 
-    def dump_yaml(self):
+    def dump_yaml(self,pretty):
         """send raw config to stdout"""
-        print(self.yaml)
+        if pretty:
+            print("*******************************************")
+            print(f"Using config: {self._filename}")
+            print(f"Throttle at: {self.dump_throttle()}")
+            print(f"Column Delimiter: {self.column_delimiter()}")
+            print(f"Input file: {self.input_filename()}")
+            print(f"Findings file: {self.findings_filename()}")
+            print("*******************************************")
+        else:
+            print(self.yaml)
 
     def dump_throttle(self):
         return self.yaml['dump_throttle']
