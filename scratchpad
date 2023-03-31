@@ -1,0 +1,16 @@
+  - Rndrng_Prvdr_Geo_Cd:
+  - Rndrng_Prvdr_Geo_Desc:
+  - HCPCS_Cd:
+      distribution: true
+  - HCPCS_Desc:
+  - HCPCS_Drug_Ind:
+  - Place_Of_Srvc:
+  - Tot_Rndrng_Prvdrs:
+  - Tot_Benes:
+  - Tot_Srvcs:
+  - Tot_Bene_Day_Srvcs:
+  - Avg_Sbmtd_Chrg:
+  - Avg_Mdcr_Alowd_Amt:
+      regex: '/^-?\d+(,\d{3})*(\.\d{1,2})?$/'
+  - Avg_Mdcr_Pymt_Amt:
+  - Avg_Mdcr_Stdzd_Amt:

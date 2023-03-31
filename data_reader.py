@@ -3,17 +3,31 @@ import csv
 class data_reader:
     """Encapsulates the details of getting data"""
 
-    def __init__(self,filename,type) -> None:
+    def __init__(self,filename,type):
         self._filename = filename
+        self._number_of_columns = 0
         self._type = type
         self._last_line=[]
         self._column_list=[]
-        with open(filename,"r") as stream:
-            self._column_list = csv.reader(stream)
 
-            print(self._column_list)
-
-
-    def get_column_list(self):
+    def set_column_list(self,column_list):
+        self._column_list = column_list
+        self._number_of_columns = len(column_list)
         return self._column_list
+    
+    def dump_column_list(self,pretty):
+        if pretty:
+            print("Pretty Column List")
+            for wstr in self._column_list:
+                print(" ",wstr)
+        else:
+            print(self._column_list)
+    
+    def filename(self):
+        return self._filename
+    
+    def number_of_columns(self):
+        return self._number_of_columns
+    
+    
     

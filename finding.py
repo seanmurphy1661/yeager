@@ -16,5 +16,9 @@ class finding:
         return self.findings
     
     def dump_findings(self):
+        print("Findings")
+        print("-------------------")
         for wstr in self.findings:
             print(f"{wstr[0]} : {wstr[1]}")
+
+

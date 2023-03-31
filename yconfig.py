@@ -18,7 +18,7 @@ class yconfig:
     def filename(self):
         """Return Filename"""
         return self._filename
-    
+
     def yaml(self):
         """Return the raw yaml config"""
         return self.yaml
@@ -54,5 +54,12 @@ class yconfig:
     def input_filename(self):
         return self.yaml['input_filename']
     
+    def input_filetype(self):
+        """Return filetype"""
+        return self.yaml['input_filetype']
+
     def findings_filename(self):
         return self.yaml['findings_filename']
+    
+    def get_options(self):
+        return self.yaml['options']

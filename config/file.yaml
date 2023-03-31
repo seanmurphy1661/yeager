@@ -1,15 +1,46 @@
 # file.yaml
 
 input_filename: "./testdata/MUP_PHY_R22_P05_V10_D20_Geo.csv"
-dump_throttle : 1000
-dump_header: yes
-column_delimiter : ","
+input_filetype: "csv"
+dump_throttle: 1000
+dump_header: off
+column_delimiter: ","
 number_of_columns: 15
-findings_filename : "findings.txt"
+findings_filename: "findings.txt"
 
 options:
-  - Rndrng_Prvdr_Geo_Lvl:
+  - test:
+      name: Rndrng_Prvdr_Geo_Lvl
+      regex: "NATIONAL"
       echo: true
       distribution: false
-
-
+  - test:
+      name: Rndrng_Prvdr_Geo_Cd
+  - test:
+      name: Rndrng_Prvdr_Geo_Desc
+  - test:
+      name: HCPCS_Cd
+      distribution: true
+  - test:
+      name: HCPCS_Desc
+  - test:
+      name: HCPCS_Drug_Ind
+  - test:
+      name: Place_Of_Srvc
+  - test:
+      name: Tot_Rndrng_Prvdrs
+  - test:
+      name: Tot_Benes
+  - test:
+      name: Tot_Srvcs
+  - test:
+      name: Tot_Bene_Day_Srvcs
+  - test:
+      name: Avg_Sbmtd_Chrg
+  - test:
+      name: Avg_Mdcr_Alowd_Amt
+      regex: '/^-?\d+(,\d{3})*(\.\d{1,2})?$/'
+  - test:
+      name: Avg_Mdcr_Pymt_Amt
+  - test:
+      name: Avg_Mdcr_Stdzd_Amt
