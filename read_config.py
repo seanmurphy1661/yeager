@@ -4,6 +4,10 @@ import re
 from yconfig import yconfig
 from finding import finding 
 from data_reader import data_reader
+from flight import flight
+from check_factory import * 
+
+
 print("Initializing ------------------------------------------------")
 config = yconfig("./config/file.yaml")
 #config.dump_yaml(False)
@@ -34,49 +38,72 @@ else:
     findings.add_finding(f"Configured:{config.number_of_columns()}")
     findings.add_finding(f"Found in file: {file_to_test.number_of_columns()}")
 
+
+
+
+
 print("Building Flight Plan--------------------------------")
 flight_plan = []
+for w in config.get_options():
+    print(w)
+    # we have the name 
+    # need position
+    if w['test']['name'] in file_to_test._column_list:
+        print(file_to_test._column_list.index(w['test']['name']))
+        n = file_to_test._column_list.index(w['test']['name'])
+    else:
+        print(f"column not found {w['test']['name']}")
+        findings.add_finding(f"column not found {w['test']['name']}")
+        next
 
-for wstr in file_to_test._column_list:
-    print("=====")
-    print(f"Processing column : {wstr}")
-    #print(config.get_options())
-    for w in config.get_options():
-        for k, v in w.items():
-            #print(f"{k} contains {v}")
-            #print(f"{v['name']}")
-            if v['name'] == wstr:
-                for z1,z2 in v.items():
-                    print(f"{z1} is {z2}")
-
+    working_flight = flight(w['test']['name'], n)
     
+    if 'regex' in w['test']:
+        print(f"Create regex {w['test']['regex']}")
 
+        working_flight.append_test(generate_regex_check("",w['test']['regex']))
 
+    flight_plan.append(working_flight)
 
-
+print("Flight plan complete---------------------------")
 
 
 print("Testing data--------------------------------------------")
 current_rec = []
-line_counter = 1001
+line_counter = 0
 with open(file_to_test.filename()) as f:
     reader = csv.reader(f)
-    for line  in reader:
+    for current_rec in reader:
         line_counter +=  1
-        if line_counter == 1:
-            field_list = line
-            next
-
         # Verify number of columns in row
-        current_rec = line
+        # fatal error for row
         if len(current_rec) != config.number_of_columns():
             findings.add_finding(f"Row {line_counter}:Number of Columns Error")
+            next
+
+        for i in range(0,len(flight_plan)):
+            #print(flight_plan[i].flight_name)
+            #print(flight_plan[i].flight_number)
+            #print(len(flight_plan[i].flight_test_array))
+            if len(flight_plan[i].flight_test_array):
+                working_result = flight_plan[i].flight_number
+                result = flight_plan[i].flight_test_array[0](current_rec[working_result])
+                if not result:
+                    findings.add_finding(f"Test failed:{line_counter}:{flight_plan[i].flight_name}:{current_rec[working_result]}")
+                print(result)
+        
+
+
+
+
+
 
         if line_counter == config.dump_throttle() :
             break
 
-findings.add_finding(f"Rows checked {line_counter}")
 
+
+findings.add_finding(f"Rows checked {line_counter}")
 
 findings.dump_findings()
 

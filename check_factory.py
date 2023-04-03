@@ -1,3 +1,4 @@
+import re
 
 def generate_range_check(n,a,b):
     def __col_check(n):
@@ -14,5 +15,16 @@ def generate_required_check(n):
         else:
             return True
     return __required_check
+
+def generate_regex_check(n,regex_string):
+    p = re.compile(regex_string)
+    def _regex_check(n):
+        if p.match(n) == None:
+            return False
+        else:
+            return True
+    return _regex_check
+
+
     
     
