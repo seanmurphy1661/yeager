@@ -25,6 +25,16 @@ def generate_regex_check(n,regex_string):
             return True
     return _regex_check
 
+def generate_regex_money_check(n):
+    p = re.compile('/^-?\d+(,\d{3})*(\.\d{1,2})?$/')
+    def _regex_money_check(n):
+        if p.match(n) == None:
+            return False
+        else:
+            return True
+    return _regex_money_check
+
+
 
     
     
