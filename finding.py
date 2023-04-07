@@ -21,4 +21,8 @@ class finding:
         for wstr in self.findings:
             print(f"{wstr[0]} : {wstr[1]}")
 
-
+    def record_findings(self):
+        with open(self.filename,"w") as o:
+            for w in self.findings:
+                print(w,file=o)
+                

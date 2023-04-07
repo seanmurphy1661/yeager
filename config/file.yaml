@@ -1,10 +1,10 @@
 # file.yaml
 
-input_filename: "./testdata/MUP_PHY_R22_P05_V10_D20_Geo.csv"
+input_filename: "./testdata/test_bed.csv"
 input_filetype: "csv"
 dump_throttle: 0
-dump_header: off
-dump_config: off
+dump_header: on
+dump_config: on
 column_delimiter: ","
 number_of_columns: 15
 findings_filename: "findings.txt"
@@ -12,13 +12,19 @@ findings_filename: "findings.txt"
 options:
   - test:
       name: Rndrng_Prvdr_Geo_Lvl
-      regex: "National|State"
+      regex: "^National$|^State$"
+  - test: 
+      name: Rndrng_Prvdr_Geo_Cd
+      regex: "^[0-9]{0,2}$"
+  - test:
+      name: HCPCS_Cd
+      regex: "^[A-Z0-9]{5}$"
   - test:
       name: HCPCS_Drug_Ind
-      regex: "N|Y"
+      regex: "^N$|^Y$"
   - test:
       name: Place_Of_Srvc
-      regex: "F|O"
+      regex: "^F$|^O$"
   - test: 
       name: Tot_Rndrng_Prvdrs
       regex: "^(0|[1-9][0-9]*)$"      

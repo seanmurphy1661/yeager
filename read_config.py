@@ -10,7 +10,8 @@ from check_factory import *
 
 print("Initializing ------------------------------------------------")
 config = yconfig("./config/file.yaml")
-#config.dump_yaml(False)
+if config.dump_config():
+    config.dump_yaml(False)
 findings = finding(config.findings_filename())
 
 print("Building reader --------------------------------------------")
@@ -20,8 +21,8 @@ file_to_test = data_reader(config.input_filename(),config.input_filetype())
 # dump header option
 if config.dump_header():
     file_to_test.dump_column_list(True)
-print("Verify Header --------------------------------------------")
 
+print("Verify Header --------------------------------------------")
 # verify number of columns
 # Table Level: Number of Columns - Header           
 if file_to_test.number_of_columns() == config.number_of_columns() :
@@ -34,6 +35,7 @@ print(f"Header verified----------------------------------")
 
 
 print("Building Flight Plan--------------------------------")
+# s/b function / class to encasulate this process
 flight_plan = []
 for w in config.get_options():
     # we have the name 
@@ -50,6 +52,7 @@ for w in config.get_options():
             print(f"column not found {w['test']['name']}")
             findings.add_finding(f"column not found {w['test']['name']}")
             next
+            
         # column name and position in file are determined
         # create the flight object
         working_flight = flight(w['test']['name'], n)
@@ -76,7 +79,7 @@ with open(file_to_test.filename()) as f:
     for current_rec in reader:
         line_counter +=  1
         # Verify number of columns in row
-        # fatal error for row
+        # fatal error for row if not correct
         if len(current_rec) != config.number_of_columns():
             findings.add_finding(f"Row {line_counter}:Number of Columns Error skipping row")
             next
@@ -89,17 +92,15 @@ with open(file_to_test.filename()) as f:
             if len(flight_plan[i].flight_test_array):
                 result = flight_plan[i].flight_test_array[0](current_rec[flight_plan[i].flight_number])
                 if not result:
-                    findings.add_finding(f"Test failed:{line_counter}:{flight_plan[i].flight_name}:{current_rec[working_result]}")
+                    findings.add_finding(f"Test failed:Row:{line_counter}:Flight Name:{flight_plan[i].flight_name}:Row Value:{current_rec[flight_plan[i].flight_number]}")
 
         # throttle test, 0 = no limit
         if config.dump_throttle() != 0 and line_counter == config.dump_throttle() :
             break
 
-print("Testing data complete-------------------------------------------")
+print("Testing data complete---------------------------")
 
 print("Wrapping up ------------------------------------")
 findings.add_finding(f"Rows checked {line_counter}")
-
-findings.dump_findings()
-
-print("Done. ----------------------------------")
+findings.record_findings()
+print("Done. ------------------------------------------")

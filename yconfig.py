@@ -5,6 +5,8 @@ class yconfig:
 
     def __init__(self,filename):
         """Initialize object with filename"""
+        # filename is the name of the configuration file
+        # see inputfile for name of file being tested
         self._filename = filename
         with open(filename,"r") as stream:
             try:
@@ -17,6 +19,7 @@ class yconfig:
     
     def filename(self):
         """Return Filename"""
+        # name of config file
         return self._filename
 
     def yaml(self):
@@ -47,6 +50,12 @@ class yconfig:
 
     def dump_header(self):
         if self.yaml['dump_header'] == True :
+            return True
+        else:
+            return False
+
+    def dump_config(self):
+        if self.yaml['dump_config'] == True:
             return True
         else:
             return False
