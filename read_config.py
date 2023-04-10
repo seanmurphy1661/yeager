@@ -5,6 +5,7 @@ from yconfig import yconfig
 from finding import finding 
 from data_reader import data_reader
 from flight import flight
+from flight import flight_activity
 from check_factory import * 
 
 
@@ -34,9 +35,13 @@ else:
 print(f"Header verified----------------------------------")
 
 
-print("Building Flight Plan--------------------------------")
+print("Building Test Flight List--------------------------------")
 # s/b function / class to encasulate this process
-flight_plan = []
+# required inputs:
+#   config.get_options - provides the list of requested tests
+#   file_to_test.column_list - provides the column name lookup for position
+#
+test_flights = []
 for w in config.get_options():
     # we have the name 
     # need position
@@ -46,7 +51,7 @@ for w in config.get_options():
         # find the column number in file
         # by matching test.name to data_reader.column[]
         if w['test']['name'] in file_to_test._column_list:
-            n = file_to_test._column_list.index(w['test']['name'])
+            column_number = file_to_test._column_list.index(w['test']['name'])
         else:
             # can't fly with out the number
             print(f"column not found {w['test']['name']}")
@@ -55,17 +60,24 @@ for w in config.get_options():
             
         # column name and position in file are determined
         # create the flight object
-        working_flight = flight(w['test']['name'], n)
+        working_flight = flight(w['test']['name'], column_number)
         
         #
         # add regex flight test to the working flight
         if 'regex' in w['test']:
-            working_flight.append_test(generate_regex_check("",w['test']['regex']))
+            working_flight.append_flight_activity(flight_activity(
+                "regex test",
+                f"column failed regex test {w['test']['regex']}",
+                generate_regex_check("",w['test']['regex'])))
+
+        #if 'range' in w['test']:
+        #    print(f"Range test: Low value = {w['test']['range'][0]}")
+        #    working_flight.append_flight_activity(generate_range_check(0,w['test']['range'][0],w['test']['range'][1]))
 
         # all the flight tests are in, file the flight in the book
-        flight_plan.append(working_flight)
+        test_flights.append(working_flight)
 
-print("Flight plan complete---------------------------")
+print("Test Flight List Complete--------------------------")
 
 
 print("Testing data--------------------------------------------")
@@ -86,13 +98,19 @@ with open(file_to_test.filename()) as f:
 
         # apply tests in flightplan to the appropriate columns
         # 
-        for i in range(0,len(flight_plan)):
-            # each flight in the flightplan has flight tests
+        for i in test_flights:
+            # each flight has flight test activities
             # execute each one on the appropriate column  
-            if len(flight_plan[i].flight_test_array):
-                result = flight_plan[i].flight_test_array[0](current_rec[flight_plan[i].flight_number])
-                if not result:
-                    findings.add_finding(f"Test failed:Row:{line_counter}:Flight Name:{flight_plan[i].flight_name}:Row Value:{current_rec[flight_plan[i].flight_number]}")
+            if len(i.flight_activities):
+                for j in i.flight_activities:
+                    print(f"Activity name: {j.flight_activity_name}")
+start here-> 
+
+                    # result = j.activity(current_rec[i.flight_number])
+                    result = True
+                    if not result:
+                        findings.add_finding(f"Test failed:Row:{line_counter}:Flight Name:{test_flights[i].flight_name}:Row Value:{current_rec[test_flights[i].flight_number]}")
+                        break 
 
         # throttle test, 0 = no limit
         if config.dump_throttle() != 0 and line_counter == config.dump_throttle() :

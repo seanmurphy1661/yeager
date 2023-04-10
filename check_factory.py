@@ -2,7 +2,8 @@ import re
 
 def generate_range_check(n,a,b):
     def __col_check(n):
-        if n >= a and n <= b:
+        x = int(n)
+        if x >= a and x <= b:
             return True
         else:
             return False 

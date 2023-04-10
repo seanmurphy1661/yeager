@@ -3,8 +3,8 @@
 input_filename: "./testdata/test_bed.csv"
 input_filetype: "csv"
 dump_throttle: 0
-dump_header: on
-dump_config: on
+dump_header: off
+dump_config: off
 column_delimiter: ","
 number_of_columns: 15
 findings_filename: "findings.txt"
@@ -15,7 +15,8 @@ options:
       regex: "^National$|^State$"
   - test: 
       name: Rndrng_Prvdr_Geo_Cd
-      regex: "^[0-9]{0,2}$"
+      regex: "^[0-9]{1,2}$"
+      range: [0,99]
   - test:
       name: HCPCS_Cd
       regex: "^[A-Z0-9]{5}$"
