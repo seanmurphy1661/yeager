@@ -70,9 +70,20 @@ for w in config.get_options():
                 f"column failed regex test {w['test']['regex']}",
                 generate_regex_check("",w['test']['regex'])))
 
-        #if 'range' in w['test']:
-        #    print(f"Range test: Low value = {w['test']['range'][0]}")
-        #    working_flight.append_flight_activity(generate_range_check(0,w['test']['range'][0],w['test']['range'][1]))
+        if 'range' in w['test']:
+            print(f"Range test: Low value = {w['test']['range'][0]}")
+            working_flight.append_flight_activity(flight_activity(
+                "range test",
+                f"column failed range test {w['test']['range'][0]},{w['test']['range'][1]}",
+                generate_range_check(0,w['test']['range'][0],w['test']['range'][1])))
+            
+        if 'type' in w['test']:
+            print(f"Type check:{w['test']['type']}")
+            if w['test']['type'] == 'date':
+                working_flight.append_flight_activity(flight_activity(
+                    "date type check",
+                    "column failed date check",
+                    generate_date_check("")))
 
         # all the flight tests are in, file the flight in the book
         test_flights.append(working_flight)
@@ -98,18 +109,14 @@ with open(file_to_test.filename()) as f:
 
         # apply tests in flightplan to the appropriate columns
         # 
-        for i in test_flights:
+        for flight in test_flights:
             # each flight has flight test activities
             # execute each one on the appropriate column  
-            if len(i.flight_activities):
-                for j in i.flight_activities:
-                    print(f"Activity name: {j.flight_activity_name}")
-start here-> 
-
-                    # result = j.activity(current_rec[i.flight_number])
-                    result = True
+            if len(flight.flight_activities):
+                for flight_activity in flight.flight_activities:
+                    result = flight_activity.flight_activity(current_rec[flight.flight_number])
                     if not result:
-                        findings.add_finding(f"Test failed:Row:{line_counter}:Flight Name:{test_flights[i].flight_name}:Row Value:{current_rec[test_flights[i].flight_number]}")
+                        findings.add_finding(f"Row:{line_counter}:Test failed:{flight_activity.flight_activity_message}:Flight Name:{flight.flight_name}:Row Value:{current_rec[flight.flight_number]}")
                         break 
 
         # throttle test, 0 = no limit

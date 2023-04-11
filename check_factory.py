@@ -1,4 +1,7 @@
 import re
+from dateutil.parser import parse 
+
+
 
 def generate_range_check(n,a,b):
     def __col_check(n):
@@ -36,6 +39,13 @@ def generate_regex_money_check(n):
     return _regex_money_check
 
 
-
+def generate_date_check(n):
+    def _date_check(n):
+        try:
+            parse(n)
+            return True
+        except:
+            return False
+    return _date_check
     
     

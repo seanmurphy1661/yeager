@@ -53,6 +53,9 @@ class yconfig:
             return True
         else:
             return False
+        
+    def suppress_findings(self):
+        return self.yaml['suppress_findings']
 
     def dump_config(self):
         if self.yaml['dump_config'] == True:
