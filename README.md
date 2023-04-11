@@ -1,7 +1,19 @@
 # yeager
+===
 data testing with python
 
 file.yaml - file configuration
+
+input_filename: specified the file to be tested
+input_filetype: specifies the type of file 
+ - "csv"
+
+dump_throttle: specified the number of rows to check 0
+dump_header: off
+dump_config: off
+column_delimiter: ","
+number_of_columns: 16
+findings_filename: "findings.txt"
 
 command test
 
