@@ -1,48 +1,34 @@
+#Yeager 
 -----
+
 Data testing with Python.
 
 Yeager uses a yaml file to define the files to be tested and the tests to apply to each column.
 
-  
-  
-
 ## file.yaml
 file.yaml is the name of the file that is used to define the tests and file to be tested.
 
-  
-
-### File settings
+  ### File settings
 
 **input_filename:** specified the file to be tested
-
 **input_filetype:** specifies the type of file
-
 - "csv"
-
 **column_delimiter:** used to separate columns in a row
-
 - any valid character
-
 **number_of_columns:** used to verify row size
 
   
-
-## control settings
-
-dump_throttle: specified the number of rows to check 0
-
-dump_header: off
-
-dump_config: off
-
-  
+### Control settings\
+**dump_throttle:** specified the number of rows to check
+- Use 0 to disable 
+**dump_header:** contols printing header row
+**dump_config:** contols print config from file.yaml
 
 ## reporting
-
-findings_filename: "findings.txt"
-
+**findings_filename:** any valid file name that can be written to disk.
   
 
+  
 ## commands
 
   
