@@ -15,22 +15,22 @@ file.yaml is the name of the file that is used to define the tests and file to b
 *input_filetype:* specifies the type of file
 - "csv"
 
-**column_delimiter:** used to separate columns in a row
+*column_delimiter:* used to separate columns in a row
 - any valid character
 
-**number_of_columns:** used to verify row size
+*number_of_columns:* used to verify row size
 
   
 ### Control settings
-**dump_throttle:** specified the number of rows to check
+*dump_throttle:* specified the number of rows to check
 - Use 0 to disable 
 
-**dump_header:** contols printing header row
+*dump_header:* contols printing header row
 
-**dump_config:** contols print config from file.yaml
+*dump_config:* contols print config from file.yaml
 
 ### Reporting
-**findings_filename:** any valid file name that can be written to disk.
+*findings_filename:* any valid file name that can be written to disk.
   
 ## commands
  Commands are specified in the options list in file.yaml. 
@@ -53,7 +53,7 @@ file.yaml is the name of the file that is used to define the tests and file to b
 ### common expressions
 common strings
 
-- Number : '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
-- BinaryChoice : "^Choice 1$|^Choice 2$"
-- Integer: "^(0|[1-9][0-9]*)$"
-- Two digit code, Not required: "^[0-9]{0,2}$"
+- *Number :* '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
+- *BinaryChoice :* "^Choice 1$|^Choice 2$"
+- *Integer:* "^(0|[1-9][0-9]*)$"
+- *Two digit code, Not required:* "^[0-9]{0,2}$"
