@@ -48,11 +48,18 @@ file.yaml is the name of the file that is used to define the tests and file to b
 *range:* specifies a numeric range 
 - range is specified as an array '[min,max]'
 
+## Example file.yaml
+'
+option:
+  - test: 
+      name: column_to_test
+      regex: "^[0-9]{1,2}$"
+      range: [2,99]
+'
+*Testing for a number between 2 and 99.*
   
 ## Appendix
 ### common expressions
-common strings
-
 - *Number :* '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
 - *BinaryChoice :* "^Choice 1$|^Choice 2$"
 - *Integer:* "^(0|[1-9][0-9]*)$"
