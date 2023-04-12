@@ -1,4 +1,4 @@
-#Yeager 
+# Yeager 
 -----
 
 Data testing with Python.
@@ -10,67 +10,50 @@ file.yaml is the name of the file that is used to define the tests and file to b
 
   ### File settings
 
-**input_filename:** specified the file to be tested
-**input_filetype:** specifies the type of file
+*input_filename:* specified the file to be tested
+
+*input_filetype:* specifies the type of file
 - "csv"
+
 **column_delimiter:** used to separate columns in a row
 - any valid character
+
 **number_of_columns:** used to verify row size
 
   
-### Control settings\
+### Control settings
 **dump_throttle:** specified the number of rows to check
 - Use 0 to disable 
+
 **dump_header:** contols printing header row
+
 **dump_config:** contols print config from file.yaml
 
-## reporting
+### Reporting
 **findings_filename:** any valid file name that can be written to disk.
   
-
-  
 ## commands
+ Commands are specified in the options list in file.yaml. 
+
+### test
+
+*name:* name of column that will be tested. 
+- for csv files, a column in the header must match or the entire test is rejected
+
+*regex:* a regular expression compatible with the Python pe library.
+
+*type:* specifies a datatype check. Valid types:
+- date
+
+*range:* specifies a numeric range 
+- range is specified as an array '[min,max]'
 
   
-
-Commands are specified in the options list in file.yaml.
-
-  
-
-## command test
-
-- test
-
-  
-
-regex: string
-
-regex - create python regular expression using supplied string
-
-  
-
+## Appendix
+### common expressions
 common strings
 
-- Money :
-
 - Number : '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
-
-- BinaryChoice : "^National$|^State$"
-
+- BinaryChoice : "^Choice 1$|^Choice 2$"
 - Integer: "^(0|[1-9][0-9]*)$"
-
-- Zipcode:
-
-- Email:
-
 - Two digit code, Not required: "^[0-9]{0,2}$"
-
-- State Abbreviation: "^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$
-
-  
-
--
-
-  
-
-Specialized
