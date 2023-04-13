@@ -1,0 +1,57 @@
+# file.yaml
+
+input_filename: "./testdata/test_bed.csv"
+input_filetype: "csv"
+dump_throttle: 0
+dump_header: off
+dump_config: off
+column_delimiter: ","
+number_of_columns: 16
+findings_filename: "findings.txt"
+
+options:
+  - test: 
+      name: Date_of_Birth
+      type: date
+  - test:
+      name: Rndrng_Prvdr_Geo_Lvl
+      regex: "^National$|^State$"
+   - test: 
+      name: Rndrng_Prvdr_Geo_Cd
+      type: number 
+      range: [2,99]    
+  - test:
+      name: HCPCS_Cd
+      regex: "^[A-Z0-9]{5}$"
+  - test:
+      name: HCPCS_Drug_Ind
+      regex: "^N$|^Y$"
+  - test:
+      name: Place_Of_Srvc
+      regex: "^F$|^O$"
+  - test: 
+      name: Tot_Rndrng_Prvdrs
+      regex: "^(0|[1-9][0-9]*)$"      
+  - test:
+      name: Tot_Benes
+      regex: "^(0|[1-9][0-9]*)$"      
+  - test:
+      name: Tot_Srvcs
+      regex: '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'     
+  - test:
+      name: Tot_Bene_Day_Srvcs
+      regex: "^(0|[1-9][0-9]*)$"      
+  - test:
+      name: Avg_Mdcr_Alowd_Amt
+      regex: '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
+  - test:
+      name: Avg_Sbmtd_Chrg
+      regex: '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
+  - test:
+      name: Avg_Mdcr_Pymt_Amt
+      regex: '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
+  - test:
+      name: Avg_Mdcr_Stdzd_Amt
+      regex: '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
+
+

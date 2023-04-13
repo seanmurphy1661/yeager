@@ -47,21 +47,19 @@ for w in config.get_options():
     # need position
     # test: option specified
     if "test" in w :
-        
+        column_number = 0 
         # find the column number in file
         # by matching test.name to data_reader.column[]
         if w['test']['name'] in file_to_test._column_list:
             column_number = file_to_test._column_list.index(w['test']['name'])
         else:
             # can't fly with out the number
-            print(f"column not found {w['test']['name']}")
+            print(f"column not found {w['test']['name']}:{file_to_test._column_list}")
             findings.add_finding(f"column not found {w['test']['name']}")
             next
-            
         # column name and position in file are determined
         # create the flight object
         working_flight = flight(w['test']['name'], column_number)
-        
         #
         # add regex flight test to the working flight
         if 'regex' in w['test']:
