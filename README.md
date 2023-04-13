@@ -35,7 +35,7 @@ file.yaml is the name of the file that is used to define the tests and file to b
 ## commands
  Commands are specified in the options list in file.yaml. 
 
-### test
+### test command
 
 *name:* name of column that will be tested. 
 - for csv files, a column in the header must match or the entire test is rejected
@@ -43,7 +43,9 @@ file.yaml is the name of the file that is used to define the tests and file to b
 *regex:* a regular expression compatible with the Python pe library.
 
 *type:* specifies a datatype check. Valid types:
-- date
+- date - use dateutil.parse to check for date datatype conformance
+- number - use regex to verify number data type
+- money - use regex to verify money format
 
 *range:* specifies a numeric range 
 - range is specified as an array '[min,max]'

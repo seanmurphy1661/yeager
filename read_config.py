@@ -1,5 +1,4 @@
 import csv 
-import re
 
 from yconfig import yconfig
 from finding import finding 
@@ -12,7 +11,7 @@ from check_factory import *
 print("Initializing ------------------------------------------------")
 config = yconfig("./config/file.yaml")
 if config.dump_config():
-    config.dump_yaml(False)
+    config.dump_yaml(True)
 findings = finding(config.findings_filename())
 
 print("Building reader --------------------------------------------")
@@ -40,6 +39,7 @@ print("Building Test Flight List--------------------------------")
 # required inputs:
 #   config.get_options - provides the list of requested tests
 #   file_to_test.column_list - provides the column name lookup for position
+#   findings - in the odd case there are issuess we'd like 
 #
 test_flights = []
 for w in config.get_options():
@@ -69,21 +69,33 @@ for w in config.get_options():
                 "regex test",
                 f"column failed regex test {w['test']['regex']}",
                 generate_regex_check("",w['test']['regex'])))
-
+        #
+        # add range flight activity to working flight
         if 'range' in w['test']:
             print(f"Range test: Low value = {w['test']['range'][0]}")
             working_flight.append_flight_activity(flight_activity(
                 "range test",
                 f"column failed range test {w['test']['range'][0]},{w['test']['range'][1]}",
                 generate_range_check(0,w['test']['range'][0],w['test']['range'][1])))
-            
+         #
+         # add type flight activity to working flight
+         # all flights start as string
+         #
         if 'type' in w['test']:
             print(f"Type check:{w['test']['type']}")
             if w['test']['type'] == 'date':
+                working_flight.update_type("date")
                 working_flight.append_flight_activity(flight_activity(
                     "date type check",
                     "column failed date check",
-                    generate_date_check("")))
+                    generate_date_type_check("")))
+            elif w['test']['type'] == 'number':
+                working_flight.update_type("number")
+                working_flight.append_flight_activity(flight_activity(
+                    "number type check",
+                    "column failed number check",
+                    generate_number_type_check(0)
+                ))
 
         # all the flight tests are in, file the flight in the book
         test_flights.append(working_flight)

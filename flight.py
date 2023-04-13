@@ -5,7 +5,15 @@ class flight:
     def __init__(self,flight_name,flight_number):
         self.flight_name = flight_name
         self.flight_number = flight_number
+        self.flight_type = "string"
         self.flight_activities = []
+
+    def update_type(self,flight_type):
+        '''Used to validate and update flight type'''
+        if flight_type in ["date"]:
+            self.flight_type = flight_type
+            return True
+        return False
 
     def append_flight_activity(self,flight_activity):
         self.flight_activities.append(flight_activity)
