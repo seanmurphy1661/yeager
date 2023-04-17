@@ -11,154 +11,302 @@ findings_filename: "cms_puf.findings"
 
 options:
   - test:
-      name: 1093940736
-  - test:
-      name: 2014
-  - test:
-      name: 2
-  - test:
-      name: 2/2/15
-  - test:
-      name: 13H1301PQCDKEA3
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: Y
-  - test:
-      name: Y
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: Y
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: N
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: N
-  - test:
-      name: N
-  - test:
-      name: Y
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: Y
-  - test:
-      name: 98
-  - test:
-      name: 127
-  - test:
-      name: 0.771653543
-  - test:
-      name: N
-  - test:
-      name: N
-  - test:
-      name: Y
-  - test:
-      name: Y
-  - test:
-      name: N
-  - test:
-      name: 129
-  - test:
-      name: 129
-  - test:
-      name: 1
-  - test:
-      name: N
-  - test:
-      name: Y
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: N
-  - test:
-      name: 51
-  - test:
-      name: 51
-  - test:
-      name: 1
-  - test:
-      name: N
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: N
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: 
-  - test:
-      name: N
-  - test:
-      name: Y
-  - test:
-      name: N
-  - test:
-      name: N
-  - test:
-      name: N
+      name: NPI
+      type: string
+      width: [10, 10]
+  - test:
+      name: Program Year
+      type: string
+      width: [4, 4]
+  - test:
+      name: Payment Year Number
+      type: string
+      width: [1, 1]
+  - test:
+      name: Attestation Success Date
+      type: string
+      width: [6, 8]
+  - test:
+      name: EHR Certification Number
+      type: string
+      width: [15, 15]
+  - test:
+      name: CM1 - Numerator
+      type: string
+      width: [0, 6]
+  - test:
+      name: CM1 - Denominator
+      type: string
+      width: [0, 6]
+  - test:
+      name: CM1 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: CM1 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM2
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM3 - Numerator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM3 - Denominator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM3 Percentage
+      type: string
+      width: [1, 11]
+  - test:
+      name: CM4 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM4 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM4 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: CM4 Exclusions
+      type: string
+      width: [1, 4]
+  - test:
+      name: CM5 - Numerator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM5 - Denominator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM5 Percentage
+      type: string
+      width: [1, 11]
+  - test:
+      name: CM6 - Numerator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM6 - Denominator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM6 Percentage
+      type: string
+      width: [1, 11]
+  - test:
+      name: CM7 - Numerator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM7 - Denominator
+      type: string
+      width: [1, 5]
+  - test:
+      name: CM7 Percentage
+      type: string
+      width: [1, 11]
+  - test:
+      name: CM8 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM8 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM8 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: CM8 Exclusions
+      type: string
+      width: [1, 4]
+  - test:
+      name: CM9 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM9 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM9 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: CM9 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM10
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM11
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM12 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM12 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM12 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: CM12 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM13 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM13 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: CM13 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: CM13 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM14
+      type: string
+      width: [1, 1]
+  - test:
+      name: CM15
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM1
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM1 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM2 - Numerator
+      type: string
+      width: [0, 7]
+  - test:
+      name: MM2 - Denominator
+      type: string
+      width: [0, 7]
+  - test:
+      name: MM2 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: MM2 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM3
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM4 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM4 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM4 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: MM4 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM5 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM5 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM5 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: MM5 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM6 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM6 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM6 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: MM7 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM7 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM7 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: MM7 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM8 - Numerator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM8 - Denominator
+      type: string
+      width: [0, 5]
+  - test:
+      name: MM8 Percentage
+      type: string
+      width: [0, 11]
+  - test:
+      name: MM8 Exclusions
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM9
+      type: string
+      width: [1, 1]
+  - test:
+      name: MM9 Exclusions
+      type: string
+      width: [1, 4]
+  - test:
+      name: MM10
+      type: string
+      width: [1, 1]

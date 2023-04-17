@@ -8,7 +8,6 @@ def build_flight_list(column_list,config_options,findings):
     flight_list = []
     column_number = 0
     for working_option in config_options:
-        print(f"Working Option:{working_option}")
         if "test" in working_option:
             #
             # Process test option
