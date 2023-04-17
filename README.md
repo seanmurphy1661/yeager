@@ -42,7 +42,7 @@ file.yaml is the name of the file that is used to define the tests and file to b
 
 *regex:* a regular expression compatible with the Python pe library.
 
-*type:* specifies a datatype check. Valid types:
+*type:* specifies a datatype check. default datatype is string. Valid types:
 - date - use dateutil.parse to check for date datatype conformance
 - number - use regex to verify number data type
 - money - use regex to verify money format
