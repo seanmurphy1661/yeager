@@ -66,3 +66,6 @@ option:
 - *BinaryChoice :* "^Choice 1$|^Choice 2$"
 - *Integer:* "^(0|[1-9][0-9]*)$"
 - *Two digit code, Not required:* "^[0-9]{0,2}$"
+
+# Autoflight
+## Analyzes sample file and builds the yeager.yaml file
