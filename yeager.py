@@ -10,7 +10,7 @@ from check_factory import *
 
 
 print("Initializing ------------------------------------------------")
-config = yconfig("./config/csm_puf.yaml")
+config = yconfig("./config/cms_puf.yaml")
 if config.dump_config():
     config.dump_yaml(True)
 findings = finding(config.findings_filename())
