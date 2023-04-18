@@ -43,12 +43,16 @@ file.yaml is the name of the file that is used to define the tests and file to b
 *regex:* a regular expression compatible with the Python pe library.
 
 *type:* specifies a datatype check. default datatype is string. Valid types:
+- string - no validation
 - date - use dateutil.parse to check for date datatype conformance
 - number - use regex to verify number data type
 - money - use regex to verify money format
 
 *range:* specifies a numeric range 
 - range is specified as an array '[min,max]'
+
+*width:* specifies column size properties
+- width is specified as an array '[min,max]'
 
 ## Example file.yaml
 ```
@@ -68,4 +72,13 @@ option:
 - *Two digit code, Not required:* "^[0-9]{0,2}$"
 
 # Autoflight
-## Analyzes sample file and builds the yeager.yaml file
+----
+Analyzes sample file and builds the yeager.yaml file
+
+## Calculations
+*number_of_columns:* based on header of sample file
+
+## Output
+*name:* column name
+*type:* "string
+*width:* [calcluated min, calculated max]

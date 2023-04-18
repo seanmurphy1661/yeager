@@ -38,6 +38,12 @@ def build_flight_list(column_list,config_options,findings):
             #
             # add regex flight test to the working flight
             #
+            if 'width' in working_option['test']:
+                working_flight.append_flight_activity(flight_activity(
+                    "width test",
+                    f"column fialed width test",
+                    generate_width_check(0,working_option['test']['width'][0],working_option['test']['width'][1])
+                ))
             if 'regex' in working_option['test']:
                 working_flight.append_flight_activity(flight_activity(
                     "regex test",

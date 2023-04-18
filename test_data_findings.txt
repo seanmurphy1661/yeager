@@ -1,3 +1,0 @@
-[datetime.datetime(2023, 4, 13, 22, 23, 20, 947972), 'Object:test_data_findings.txt created']
-[datetime.datetime(2023, 4, 13, 22, 23, 20, 948083), 'Number of columns matches!']
-[datetime.datetime(2023, 4, 13, 22, 23, 20, 948779), 'Rows checked 6']

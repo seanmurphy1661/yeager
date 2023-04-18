@@ -86,5 +86,17 @@ def generate_date_type_check(n):
         except:
             return False
     return _date_check
-    
+
+#
+#   width check verifies lenghth is between min and max
+#   True = size within tolerance
+#   False = size outside specification
+# 
+def generate_width_check(n,min,max):
+    def _width_check(n):
+        if len(n) < min or len(n) > max:
+            return False
+        else:
+            return True
+    return _width_check   
     
