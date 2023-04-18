@@ -35,6 +35,8 @@ with open(filename) as csvfile:
                 if len(current_rec[i]) < width[i][0]:
                     width[i][0] = len(current_rec[i])
                 
+                
+                
 
 
 output_lines=[]
