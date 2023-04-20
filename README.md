@@ -40,19 +40,23 @@ file.yaml is the name of the file that is used to define the tests and file to b
 *name:* name of column that will be tested. 
 - for csv files, a column in the header must match or the entire test is rejected
 
+*range:* specifies a numeric range 
+- range is specified as an array '[min,max]'
+
 *regex:* a regular expression compatible with the Python pe library.
+
+*required:* specifies if content must be present
+- True: Zero length strings are flagged as a finding
+- False: Zero length strings are allowed
+
+*width:* specifies column size properties
+- width is specified as an array '[min,max]'
 
 *type:* specifies a datatype check. default datatype is string. Valid types:
 - string - no validation
 - date - use dateutil.parse to check for date datatype conformance
 - number - use regex to verify number data type
 - money - use regex to verify money format
-
-*range:* specifies a numeric range 
-- range is specified as an array '[min,max]'
-
-*width:* specifies column size properties
-- width is specified as an array '[min,max]'
 
 ## Example file.yaml
 ```
@@ -73,12 +77,13 @@ option:
 
 # Autoflight
 ----
-Analyzes sample file and builds the yeager.yaml file
+Analyzes sample file and builds a yaml file that can be used for testing other files.
 
 ## Calculations
-*number_of_columns:* based on header of sample file
+*number_of_columns:* based on header row
 
 ## Output
 *name:* column name
-*type:* "string
+*type:* string|number
 *width:* [calcluated min, calculated max]
+*required:* True|False

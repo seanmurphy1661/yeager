@@ -3,10 +3,8 @@ import argparse
 from yconfig import yconfig
 from finding import finding 
 from data_reader import data_reader
-from flight import flight
-from flight import flight_activity
 from flight import build_flight_list
-from check_factory import * 
+from activity_factory import * 
 
 def main():
     print("Initializing ----------------------------------------------")
@@ -56,8 +54,7 @@ def main():
     print("Test Flight List Complete ---------------------------------")
     print("Testing data ----------------------------------------------")
 
-    # open the file and get ready to test each row
-    #
+    # test the file with the set of flights and where to report
     file_to_test.flight_test(test_flights,config,findings)
 
     print("Testing data complete -------------------------------------")
