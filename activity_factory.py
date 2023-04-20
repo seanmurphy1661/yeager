@@ -1,6 +1,8 @@
 import re
 from dateutil.parser import parse 
 #
+#   Name change
+#
 #   generate_range_check(n,a,b) - col between min / max
 #   generate_required_check(n) - 0 len string
 #   generate_regex_check(n,regex_string) - any valid regex
