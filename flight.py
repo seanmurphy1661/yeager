@@ -18,7 +18,7 @@ def build_flight_list(column_list,config_options,findings):
             #
             if "name" not in working_option['test']:
                 findings.add_finding("name tag required")
-                next
+                continue
             #
             #   use name to lookup column number, 
             #   all column references are by column_number
@@ -30,7 +30,8 @@ def build_flight_list(column_list,config_options,findings):
                 # can't fly with out the number, reject test entry
                 #
                 findings.add_finding(f"column not found {working_option['test']['name']}")
-                next
+                continue
+
             # column name and position in file are determined
             # create the flight object
             working_flight = flight(working_option['test']['name'], column_number)
@@ -82,6 +83,7 @@ def build_flight_list(column_list,config_options,findings):
 
         # all the flight tests are in, file the flight in the book
         flight_list.append(working_flight)
+        
     return flight_list
 
 #
