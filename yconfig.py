@@ -8,11 +8,17 @@ class yconfig:
         # filename is the name of the configuration file
         # see inputfile for name of file being tested
         self._filename = filename
-        with open(filename,"r") as stream:
-            try:
-                self.yaml = yaml.safe_load(stream)
-            except yaml.YAMLError as exc:
-                print(exc)
+        self.yaml_loaded = False
+        try:
+            with open(filename,"r") as stream:
+                try:
+                    self.yaml = yaml.safe_load(stream)
+                    self.yaml_loaded = True
+                except yaml.YAMLError as exc:
+                    print(exc)
+        except FileNotFoundError as exc:
+            print(exc)
+
 
     def column_delimiter(self):
         return self.yaml['column_delimiter']

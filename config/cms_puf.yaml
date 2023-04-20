@@ -2,9 +2,10 @@
 # ./config/cms_puf.yaml
 input_filename: "./testdata/cms_puf.csv"
 input_filetype: "csv"
-dump_throttle: 0
+dump_throttle: 10
 dump_header: False
 dump_config: False
+dump_flight: True
 column_delimiter: ","
 number_of_columns: 76
 findings_filename: "./findings/cms_puf.findings"
@@ -14,299 +15,374 @@ options:
       name: NPI
       type: number
       width: [10, 10]
+      required: True
   - test:
       name: Program Year
       type: number
       width: [4, 4]
+      required: True
   - test:
       name: Payment Year Number
       type: number
       width: [1, 1]
+      required: True
   - test:
       name: Attestation Success Date
       type: string
       width: [6, 8]
+      required: True
   - test:
       name: EHR Certification Number
       type: string
       width: [15, 15]
+      required: True
   - test:
       name: CM1 - Numerator
       type: number
       width: [0, 6]
+      required: False
   - test:
       name: CM1 - Denominator
       type: number
       width: [0, 6]
+      required: False
   - test:
       name: CM1 Percentage
       type: number
       width: [0, 11]
+      required: False
   - test:
       name: CM1 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM2
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM3 - Numerator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM3 - Denominator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM3 Percentage
       type: number
       width: [1, 11]
+      required: True
   - test:
       name: CM4 - Numerator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM4 - Denominator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM4 Percentage
       type: number
       width: [0, 11]
+      required: False
   - test:
       name: CM4 Exclusions
       type: string
       width: [1, 4]
+      required: True
   - test:
       name: CM5 - Numerator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM5 - Denominator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM5 Percentage
       type: number
       width: [1, 11]
+      required: True
   - test:
       name: CM6 - Numerator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM6 - Denominator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM6 Percentage
       type: number
       width: [1, 11]
+      required: True
   - test:
       name: CM7 - Numerator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM7 - Denominator
       type: number
       width: [1, 5]
+      required: True
   - test:
       name: CM7 Percentage
       type: number
       width: [1, 11]
+      required: True
   - test:
       name: CM8 - Numerator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM8 - Denominator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM8 Percentage
       type: number
       width: [0, 11]
+      required: False
   - test:
       name: CM8 Exclusions
       type: string
       width: [1, 4]
+      required: True
   - test:
       name: CM9 - Numerator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM9 - Denominator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM9 Percentage
       type: number
       width: [0, 11]
+      required: False
   - test:
       name: CM9 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM10
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM11
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM12 - Numerator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: CM12 - Denominator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: CM12 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: CM12 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM13 - Numerator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM13 - Denominator
       type: number
       width: [0, 5]
+      required: False
   - test:
       name: CM13 Percentage
       type: number
       width: [0, 11]
+      required: False
   - test:
       name: CM13 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM14
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: CM15
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM1
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM1 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM2 - Numerator
       type: string
       width: [0, 7]
+      required: False
   - test:
       name: MM2 - Denominator
       type: string
       width: [0, 7]
+      required: False
   - test:
       name: MM2 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: MM2 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM3
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM4 - Numerator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM4 - Denominator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM4 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: MM4 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM5 - Numerator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM5 - Denominator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM5 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: MM5 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM6 - Numerator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM6 - Denominator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM6 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: MM7 - Numerator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM7 - Denominator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM7 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: MM7 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM8 - Numerator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM8 - Denominator
       type: string
       width: [0, 5]
+      required: False
   - test:
       name: MM8 Percentage
       type: string
       width: [0, 11]
+      required: False
   - test:
       name: MM8 Exclusions
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM9
       type: string
       width: [1, 1]
+      required: True
   - test:
       name: MM9 Exclusions
       type: string
       width: [1, 4]
+      required: True
   - test:
       name: MM10
       type: string
       width: [1, 1]
+      required: True

@@ -29,12 +29,16 @@ def build_flight_list(column_list,config_options,findings):
                 #
                 # can't fly with out the number, reject test entry
                 #
-                print(f"column not found {working_option['test']['name']}:{column_list}")
                 findings.add_finding(f"column not found {working_option['test']['name']}")
                 next
             # column name and position in file are determined
             # create the flight object
             working_flight = flight(working_option['test']['name'], column_number)
+            #
+            # set required flag
+            #
+            if 'required' in working_option['test'] :
+                working_flight.flight_data_required = working_option['test']['required']
             #
             # add regex flight test to the working flight
             #
@@ -92,6 +96,7 @@ class flight:
     def __init__(self,flight_name,flight_number):
         self.flight_name = flight_name
         self.flight_number = flight_number
+        self.flight_data_required = False 
         self.flight_type = "string"
         self.flight_activities = []
 

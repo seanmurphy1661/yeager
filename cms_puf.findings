@@ -1,4 +1,0 @@
-[datetime.datetime(2023, 4, 17, 20, 48, 3, 779092), 'Object:cms_puf.findings created']
-[datetime.datetime(2023, 4, 17, 20, 48, 3, 779290), 'Number of columns matches!']
-[datetime.datetime(2023, 4, 17, 20, 48, 3, 779666), 'Row:1:Test failed:column fialed width test:Flight Name:NPI:Row Value:100300014']
-[datetime.datetime(2023, 4, 17, 20, 48, 5, 943183), 'Rows checked 64399']

@@ -15,7 +15,7 @@ class data_reader:
                 break
             self._column_list = line
             self._number_of_columns = len(line)
-        
+    
 
     def set_column_list(self,column_list):
         self._column_list = column_list

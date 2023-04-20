@@ -14,6 +14,9 @@ number_of_columns = 0
 column_name = []
 # column_types - default to string
 column_type = []
+# required - are zero-len strings allowed
+column_empty_count=[]
+column_required=[]
 # column width [min,max]
 width=[]
 #
@@ -31,11 +34,15 @@ with open(filename) as csvfile:
     for current_rec in reader:
         row_count += 1 
         if row_count == 1:
+            #
+            # first time initialization
             number_of_columns = len(current_rec)
             for str in current_rec:
                 column_name.append(str)
                 column_type.append("string")
                 column_number_type.append(0)
+                column_empty_count.append(0)
+                column_required.append(False)
                 width.append([0,0])
         else:
             for i in range(0,number_of_columns-1):
@@ -55,6 +62,12 @@ with open(filename) as csvfile:
                 # if data matches a number lets add one to the evidence
                 if number_re.match(current_rec[i]):
                     column_number_type[i] += 1
+                #
+                # count empty rows with empty column for
+                # required tag later
+                if len(current_rec[i]) == 0 :
+                    column_empty_count[i] += 1
+
 
 
 # 
@@ -66,6 +79,9 @@ for i in range(0,number_of_columns-1):
     working_pct = column_number_type[i]/row_count
     if working_pct > .75 :
         column_type[i] = "number"
+    if column_empty_count[i] == 0 :
+        column_required[i] = True
+    
 
 #
 # create yaml file
@@ -88,6 +104,7 @@ for i in range(0,number_of_columns-1):
     output_lines.append(f"      name: {column_name[i]}")
     output_lines.append(f"      type: {column_type[i]}")
     output_lines.append(f"      width: {width[i]}")
+    output_lines.append(f"      required: {column_required[i]}")
 
 with open(output_filename,"w") as o:
     for w in output_lines:
