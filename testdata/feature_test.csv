@@ -1,7 +1,0 @@
-number_type,date_type,money_format,required_col,range_col,regex_choice
-100011101,10/1/03,5,correct,5,National
-100011102,10/2/03,3.222,,3,State
-100011103,10/3/03,10.11,correct,2,National
-100011104,10/4/03,1.01,correct,2,State
-100011105,10/5/03,1,,10,National
-100011106,10/6/03,5.00.00,correct,99,State
