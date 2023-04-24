@@ -29,12 +29,12 @@ def generate_range_check(n,a,b):
 #   False = 0 len string
 #
 def generate_required_check(n):
-    def __required_check(n):
+    def _required_check(n):
         if len(n) == 0 :
             return False
         else:
             return True
-    return __required_check
+    return _required_check
 #
 #   generic regex test
 #   True = column matches expression

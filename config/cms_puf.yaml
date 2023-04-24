@@ -2,7 +2,7 @@
 # ./config/cms_puf.yaml
 input_filename: "./testdata/cms_puf.csv"
 input_filetype: "csv"
-dump_throttle: 10
+dump_throttle: 0
 dump_header: False
 dump_config: False
 dump_flight: True
