@@ -1,5 +1,0 @@
-Date_of_Birth,Rndrng_Prvdr_Geo_Lvl,Rndrng_Prvdr_Geo_Cd,Rndrng_Prvdr_Geo_Desc,HCPCS_Cd,HCPCS_Desc,HCPCS_Drug_Ind,Place_Of_Srvc,Tot_Rndrng_Prvdrs,Tot_Benes,Tot_Srvcs,Tot_Bene_Day_Srvcs,Avg_Sbmtd_Chrg,Avg_Mdcr_Alowd_Amt,Avg_Mdcr_Pymt_Amt,Avg_Mdcr_Stdzd_Amt
-1/1/1961,National,0,National,0001A,Adm sarscov2 30mcg/0.3ml 1st,N,F,10,86,86,86,32.988139535,17.498139535,17.498139535,16.817674419
-12/32/2022,National,999,National,0001A,Adm sarscov2 30mcg/0.3ml 1st,N,O,1809,159365,159385,159385,31.256701132,16.787724064,16.787724064,16.624376761
-7/4/1776,National,5,National,0002A,Adm sarscov2 30mcg/0.3ml 2nd,N,O,53,279,279,279,66.476594982,28.183763441,28.183763441,27.927168459
-11/15/1999,National,,National,0003M,Liver dis 10 assays w/nash,N,O,14,88,88,88,572.58386364,453.14295455,451.13613636,485.02159091
