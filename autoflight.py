@@ -1,111 +1,136 @@
-import yaml
+import argparse
 import csv
 import re 
 #
-# filename settings sb exec parameters
-filename = "./testdata/cms_puf.csv"
-delimiter = ","
-output_filename = "./config/cms_puf.yaml"
-findings_filename = "./findings/cms_puf.findings"
-#
-# number of columns is based on the header
-number_of_columns = 0
-# list of column names
-column_name = []
-# column_types - default to string
-column_type = []
-# required - are zero-len strings allowed
-column_empty_count=[]
-column_required=[]
-# column width [min,max]
-width=[]
-#
-#   count the number of rows that conform to a number regex
-column_number_type = []
-# 
-#   re pattern for testing numeric
-number_re = re.compile('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$') 
-#
-#   count the number of rows in the test file
-#   row_count is the denominator for data type infrence
-row_count = 0 
-with open(filename) as csvfile:
-    reader = csv.reader(csvfile)
-    for current_rec in reader:
-        row_count += 1 
-        if row_count == 1:
-            #
-            # first time initialization
-            number_of_columns = len(current_rec)
-            for str in current_rec:
-                column_name.append(str)
-                column_type.append("string")
-                column_number_type.append(0)
-                column_empty_count.append(0)
-                column_required.append(False)
-                width.append([0,0])
-        else:
-            for i in range(0,number_of_columns-1):
+def main():
+    parser = argparse.ArgumentParser(
+        prog='autoflight',
+        description='create a yeager config file from sample data',
+        epilog='quality is job #1')
+    parser.add_argument('targetname',help="File to analyze")
+    parser.add_argument('-d','--delimiter',dest="delimiter",default=",",help="Column separator")
+    parser.add_argument('-c','--config',dest="output_filename",help="yeager config file")
+    args = parser.parse_args()
+
+    print("Initializing ----------------------------------------------")
+    filename = args.targetname
+    delimiter = args.delimiter
+    if args.targetname :
+        output_filename = args.targetname
+    else:
+        output_filename = f"{args.targetname}.yeager.yaml"
+    print(f"Target file: {filename}")
+    print(f"Delimiter: {delimiter}")
+    print(f"Output configuration: {output_filename}")
+    #
+    # number of columns is based on the header
+    number_of_columns = 0
+    # list of column names
+    column_name = []
+    # column_types - default to string
+    column_type = []
+    # required - are zero-len strings allowed
+    column_empty_count=[]
+    column_required=[]
+    # column width [min,max]
+    width=[]
+    #
+    #   count the number of rows that conform to a number regex
+    column_number_type = []
+    # 
+    #   re pattern for testing numeric
+    number_re = re.compile('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$') 
+    #
+    #   count the number of rows in the test file
+    #   row_count is the denominator for data type infrence
+    row_count = 0 
+    print("Processing ----------------------------------------------")
+
+    with open(filename) as csvfile:
+        reader = csv.reader(csvfile)
+        for current_rec in reader:
+            row_count += 1 
+            if row_count == 1:
                 #
-                #   Update minimum and maximum widths
-                #
-                # width[0] = minimum
-                # width[1] = maximum
-                if len(current_rec[i]) > width[i][1]:
-                    width[i][1] = len(current_rec[i])
-                    if width[i][0] == 0:
-                        width[i][0] = len(current_rec) 
-                if len(current_rec[i]) < width[i][0]:
-                    width[i][0] = len(current_rec[i])
-                #
-                # part of the type calculation
-                # if data matches a number lets add one to the evidence
-                if number_re.match(current_rec[i]):
-                    column_number_type[i] += 1
-                #
-                # count empty rows with empty column for
-                # required tag later
-                if len(current_rec[i]) == 0 :
-                    column_empty_count[i] += 1
+                # first time initialization
+                number_of_columns = len(current_rec)
+                for str in current_rec:
+                    column_name.append(str)
+                    column_type.append("string")
+                    column_number_type.append(0)
+                    column_empty_count.append(0)
+                    column_required.append(False)
+                    width.append([0,0])
+            else:
+                for i in range(0,number_of_columns-1):
+                    #
+                    #   Update minimum and maximum widths
+                    #
+                    # width[0] = minimum
+                    # width[1] = maximum
+                    if len(current_rec[i]) > width[i][1]:
+                        width[i][1] = len(current_rec[i])
+                        if width[i][0] == 0:
+                            width[i][0] = len(current_rec) 
+                    if len(current_rec[i]) < width[i][0]:
+                        width[i][0] = len(current_rec[i])
+                    #
+                    # part of the type calculation
+                    # if data matches a number lets add one to the evidence
+                    if number_re.match(current_rec[i]):
+                        column_number_type[i] += 1
+                    #
+                    # count empty rows with empty column for
+                    # required tag later
+                    if len(current_rec[i]) == 0 :
+                        column_empty_count[i] += 1
 
 
 
-# 
-# post processing
-#                 
-# step 1 type processing
-# check the evidence for a number type
-for i in range(0,number_of_columns-1):
-    working_pct = column_number_type[i]/row_count
-    if working_pct > .75 :
-        column_type[i] = "number"
-    if column_empty_count[i] == 0 :
-        column_required[i] = True
-    
+    # 
+    # post processing
+    #                 
+    # step 1 type processing
+    # check the evidence for a number type
+    print("Post Processing ----------------------------------------------")
 
-#
-# create yaml file
-#
-output_lines=[]
-output_lines.append(f"# generated by yeager")
-output_lines.append(f"# {output_filename}")
-output_lines.append(f"input_filename: \"{filename}\"")
-output_lines.append(f"input_filetype: \"csv\"")
-output_lines.append(f"dump_throttle: 0")
-output_lines.append(f"dump_header: False")
-output_lines.append(f"dump_config: False")
-output_lines.append(f"column_delimiter: \"{delimiter}\"")
-output_lines.append(f"number_of_columns: {number_of_columns}")
-output_lines.append(f"findings_filename: \"{findings_filename}\"")
-output_lines.append(f"\noptions:")
+    for i in range(0,number_of_columns-1):
+        working_pct = column_number_type[i]/row_count
+        if working_pct > .75 :
+            column_type[i] = "number"
+        if column_empty_count[i] == 0 :
+            column_required[i] = True
+        
 
-for i in range(0,number_of_columns-1):
-    output_lines.append(f"  - test:")
-    output_lines.append(f"      name: {column_name[i]}")
-    output_lines.append(f"      type: {column_type[i]}")
-    output_lines.append(f"      width: {width[i]}")
-    output_lines.append(f"      required: {column_required[i]}")
+    #
+    # create yaml file
+    #
+    print("Output ----------------------------------------------")
+    output_lines=[]
+    output_lines.append(f"# generated by yeager")
+    output_lines.append(f"# {output_filename}")
+    output_lines.append(f"input_filename: \"{filename}\"")
+    output_lines.append(f"input_filetype: \"csv\"")
+    output_lines.append(f"dump_throttle: 0")
+    output_lines.append(f"dump_header: False")
+    output_lines.append(f"dump_config: False")
+    output_lines.append(f"column_delimiter: \"{delimiter}\"")
+    output_lines.append(f"number_of_columns: {number_of_columns}")
+    output_lines.append(f"findings_filename: \"{output_filename}.findings\"")
+    output_lines.append(f"\noptions:")
 
-with open(output_filename,"w") as o:
-    for w in output_lines:
-        print(w,file=o)
+    for i in range(0,number_of_columns-1):
+        output_lines.append(f"  - test:")
+        output_lines.append(f"      name: {column_name[i]}")
+        output_lines.append(f"      type: {column_type[i]}")
+        output_lines.append(f"      width: {width[i]}")
+        output_lines.append(f"      required: {column_required[i]}")
+
+    with open(output_filename,"w") as o:
+        for w in output_lines:
+            print(w,file=o)
+    print("Done ----------------------------------------------")
+
+
+if __name__ == "__main__":
+    main()
