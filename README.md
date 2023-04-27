@@ -28,7 +28,9 @@ Yeager is a framework for performing quality tests on data files.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This code has been developed and tested with Python 3.11 
+
+### Depenency List
 * Python version 3.11 or later
   
 ### Installation
