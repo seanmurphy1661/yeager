@@ -115,11 +115,24 @@ Autoflight.py will create a fully functional configuration file. This is particu
 ## Appendix
 ## Example file.yaml
 ```
+input_filename: "file_to_test.csv"
+input_filetype: "csv"
+dump_throttle: 0
+dump_header: True
+dump_config: True
+column_delimiter: ","
+number_of_columns: 10
+findings_filename: "file_to_test.csv.findings"
+
 option:
   - test: 
       name: column_to_test
       regex: "^[0-9]{1,2}$"
       range: [2,99]
+  .
+  .
+  .
+
 ```
 *Testing for a number between 2 and 99.*
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
