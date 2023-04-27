@@ -1,15 +1,71 @@
-# Yeager 
------
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
 
-Data testing with Python.
 
-Yeager uses a yaml file to define the files to be tested and the tests to apply to each column.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-## file.yaml
-file.yaml is the name of the file that is used to define the tests and file to be tested.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-  ### File settings
+Yeager is a framework for performing quality tests on data files. 
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* Python version 3.11 or later
+  
+### Installation
+
+1. Navigate to https://github.com/seanmurphy1661/yeager
+2. Clone the repo
+   ```sh
+   git clone https://github.com/seanmurphy1661/yeager.git
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+### Autoflight
+Analyzes sample file and builds a yaml file that can be used for testing production files.
+
+```
+autoflight.py filename [-c|--config configfile] [-d|--delimiter delimiter]
+```
+
+### Yeager
+Verifies files against a set of tests defined in the *configfile*.
+
+```
+yeager.py configfile
+```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Configuration
+The configuration file, aka *configfile*, is a specification for the tests that will be preformed against the file named in *input_filename*.
+As shown below, the configuration file also includes processing directives that govern processing. 
+
+Autoflight.py will create a fully functional configuration file. This is particularly helpfull for files with many columns. 
+
+### File settings
 *input_filename:* specified the file to be tested
 
 *input_filetype:* specifies the type of file
@@ -20,7 +76,6 @@ file.yaml is the name of the file that is used to define the tests and file to b
 
 *number_of_columns:* used to verify row size
 
-  
 ### Control settings
 *dump_throttle:* specified the number of rows to check
 - Use 0 to disable 
@@ -30,13 +85,9 @@ file.yaml is the name of the file that is used to define the tests and file to b
 *dump_config:* contols print config from file.yaml
 
 ### Reporting
-*findings_filename:* any valid file name that can be written to disk.
-  
-## commands
- Commands are specified in the options list in file.yaml. 
+*findings_filename:* any valid file name that can   
 
-### test command
-
+### Test Options 
 *name:* name of column that will be tested. 
 - for csv files, a column in the header must match or the entire test is rejected
 
@@ -58,6 +109,10 @@ file.yaml is the name of the file that is used to define the tests and file to b
 - number - use regex to verify number data type
 - money - use regex to verify money format
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Appendix
 ## Example file.yaml
 ```
 option:
@@ -67,23 +122,41 @@ option:
       range: [2,99]
 ```
 *Testing for a number between 2 and 99.*
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
   
-## Appendix
 ### Common expressions
 - *Number :* '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
 - *BinaryChoice :* "^Choice 1$|^Choice 2$"
 - *Integer:* "^(0|[1-9][0-9]*)$"
 - *Two digit code, Not required:* "^[0-9]{0,2}$"
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# Autoflight
-----
-Analyzes sample file and builds a yaml file that can be used for testing other files.
+<!-- CONTRIBUTING -->
+## Contributing
 
-## Calculations
-*number_of_columns:* based on header row
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## Output
-*name:* column name
-*type:* string|number
-*width:* [calcluated min, calculated max]
-*required:* True|False
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+
+Distributed under the GNU GENERAL PUBLIC LICENSE. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* Best README Template: https://github.com/othneildrew/Best-README-Template
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 

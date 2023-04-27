@@ -7,9 +7,9 @@ def main():
         prog='autoflight',
         description='create a yeager config file from sample data',
         epilog='quality is job #1')
-    parser.add_argument('targetname',help="File to analyze")
-    parser.add_argument('-d','--delimiter',dest="delimiter",default=",",help="Column separator")
-    parser.add_argument('-c','--config',dest="output_filename",help="yeager config file")
+    parser.add_argument('targetname',help="The file to analyze.",required=True)
+    parser.add_argument('-d','--delimiter',dest="delimiter",default=",",help="Column delimiter column. Comma (,) is the default.")
+    parser.add_argument('-c','--config',dest="output_filename",help="Name of the yeager config file.",required=True)
     args = parser.parse_args()
 
     print("Initializing ----------------------------------------------")
