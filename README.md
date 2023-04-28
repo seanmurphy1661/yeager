@@ -36,10 +36,7 @@ This code has been developed and tested with Python 3.11
 ### Installation
 
 1. Navigate to https://github.com/seanmurphy1661/yeager
-2. Clone the repo
-   ```sh
-   git clone https://github.com/seanmurphy1661/yeager.git
-   ```
+2. Download and extract yeager-main.zip
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
