@@ -115,7 +115,7 @@ Autoflight.py will create a fully functional configuration file. This is particu
 
 
 ## Appendix
-## Example file.yaml
+### Example file.yaml
 ```
 input_filename: "file_to_test.csv"
 input_filetype: "csv"
@@ -137,8 +137,7 @@ option:
 
 ```
 *Testing for a number between 2 and 99.*
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-  
+
 ### Common expressions
 - *Number :* '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$'
 - *BinaryChoice :* "^Choice 1$|^Choice 2$"
