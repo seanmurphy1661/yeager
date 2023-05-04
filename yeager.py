@@ -19,7 +19,8 @@ def main():
     if not config.yaml_loaded:
         print(f"Configuration file {args.filename} could not be loaded.")
         return (1)
-    
+    print(f"{config.stats_enabled()}")
+
     if config.dump_config():
         config.dump_yaml(True)
     findings = finding(config.findings_filename())

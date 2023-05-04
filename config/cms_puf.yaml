@@ -2,13 +2,18 @@
 # ./config/cms_puf.yaml
 input_filename: "./testdata/cms_puf.csv"
 input_filetype: "csv"
-dump_throttle: 0
+dump_throttle: 300
 dump_header: False
 dump_config: False
 dump_flight: True
 column_delimiter: ","
 number_of_columns: 76
 findings_filename: "./findings/cms_puf.findings"
+
+stats:
+  enabled: True
+  file: yeager.stats
+  report: yeager.report
 
 options:
   - test:
