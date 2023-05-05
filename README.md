@@ -47,7 +47,7 @@ This code has been developed and tested with Python 3.11
 Analyzes sample file and builds a yaml file that can be used for testing production files.
 
 ```
-autoflight.py filename [-c|--config configfile] [-d|--delimiter delimiter]
+autoflight.py filename [-c|--config configfile] [-d|--delimiter delimiter] [-o|--overwrite]
 ```
 
 ### Yeager
@@ -62,7 +62,7 @@ yeager.py configfile
 The configuration file, aka *configfile*, is a specification for the tests that will be preformed against the file named in *input_filename*.
 As shown below, the configuration file also includes processing directives that govern processing. 
 
-Autoflight.py will create a fully functional configuration file. This is particularly helpfull for files with many columns. 
+Autoflight.py will create a fully functional configuration file. This is particularly helpful for files with many columns. 
 
 ### File settings
 *input_filename:* specified the file to be tested
@@ -85,6 +85,15 @@ Autoflight.py will create a fully functional configuration file. This is particu
 
 ### Reporting
 *findings_filename:* any valid file name that can   
+
+### Stats
+The stats section is used to enable cProfile statistics.
+
+*enabled:* True|False
+
+*file:* specify the name of the cProfile output
+
+*report:* specify the name of the report
 
 ### Test Options 
 *name:* name of column that will be tested. 
