@@ -5,7 +5,7 @@ import yaml
 def main():
     print("Initializing ----------------------------------------------")
     
-    filename = './config/cms_puf.yaml'
+    filename = './findings/autoflight.test.yaml'
     yaml_loaded = False
     yaml_raw = ""
     try:
@@ -22,6 +22,8 @@ def main():
     if yaml_loaded != True :
         print(f"file was not loaded")
         return (1)
+ 
+    print("Review  ---------------------------------------------------")
     
     #print(f"{yaml_raw}")
     if 'input_filename' not in yaml_raw:
