@@ -47,7 +47,11 @@ This code has been developed and tested with Python 3.11
 Analyzes sample file and builds a yaml file that can be used for testing production files.
 
 ```
-autoflight.py filename [-c|--config configfile] [-d|--delimiter delimiter] [-o|--overwrite]
+autoflight.py filename 
+              [-c|--config configfile] 
+              [-d|--delimiter delimiter] 
+              [-o|--overwrite] 
+              [-s|--sample sample_size]
 ```
 
 ### Yeager

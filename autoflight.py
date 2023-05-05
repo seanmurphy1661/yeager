@@ -11,25 +11,36 @@ def main():
     parser.add_argument('targetname',help="The file to analyze.")
     parser.add_argument('-d','--delimiter',dest="delimiter",default=",",help="Column delimiter column. Comma (,) is the default.")
     parser.add_argument('-c','--config',dest="output_filename",help="Name of the yeager config file.",required=True)
+    parser.add_argument('-s','--sample_size',dest="sample_size",help="Number of records to sample before creating config",required=False)
     parser.add_argument('-o','--overwrite', action='store_true', dest="overwrite_flag", help="Overwrite if configuration exists")
     args = parser.parse_args()
 
     print("Initializing ----------------------------------------------")
     filename = args.targetname
     delimiter = args.delimiter
+
     if args.output_filename :
         output_filename = args.output_filename.strip()
     else:
         output_filename = f"{args.targetname}.yeager.yaml"
+
     if args.overwrite_flag:
         overwrite_flag = True
     else:
         overwrite_flag = False
 
+    sample_size = 0
+    if args.sample_size:
+        pe = re.compile("^(0|[1-9][0-9]*)$")
+        if pe.match(args.sample_size.strip()) != None:
+            sample_size = int(args.sample_size.strip())
+
+ 
     print(f"Target file: {filename}")
     print(f"Delimiter: {delimiter}")
     print(f"Output configuration: {output_filename}")
     print(f"Overwrite flag: {overwrite_flag}")
+    print(f"Sample size: {sample_size}")
     
     if exists(output_filename) and not overwrite_flag:
         print(f"File exists. quitting.")
@@ -98,13 +109,15 @@ def main():
                     if len(current_rec[i]) == 0 :
                         column_empty_count[i] += 1
 
-
+            if sample_size > 0 and row_count == sample_size:
+                break
 
     # 
     # post processing
     #                 
     # step 1 type processing
     # check the evidence for a number type
+    print(f"Rows processed: {row_count}")
     print("Post Processing ----------------------------------------------")
 
     for i in range(0,number_of_columns-1):
