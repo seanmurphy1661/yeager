@@ -12,8 +12,8 @@ findings_filename: "./findings/cms_puf.findings"
 
 stats:
   enabled: True
-  file: yeager.stats
-  report: yeager.report
+  file: "./findings/cms_puf.stats"
+  report: "./findings/cms_puf.report"
 
 options:
   - test:
