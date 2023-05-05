@@ -76,7 +76,7 @@ Autoflight.py will create a fully functional configuration file. This is particu
 *number_of_columns:* used to verify row size
 
 ### Control settings
-*dump_throttle:* specified the number of rows to check
+*dump_throttle:* specifies the number of rows to check
 - Use 0 to disable 
 
 *dump_header:* contols printing header row
