@@ -1,9 +1,11 @@
 import re
-from dateutil.parser import parse 
+from dateutil.parser import parse
+from datetime import date
 #
 #   Name change
 #
-#   generate_range_check(n,a,b) - col between min / max
+#   generate_range_check(n,a,b) - col between min / max (must be int)
+#   generate_date_range_check(n,a,b) - col between min / max (must be date)
 #   generate_required_check(n) - 0 len string
 #   generate_regex_check(n,regex_string) - any valid regex
 #   generate_regex_money_check(n) - money format 
@@ -23,6 +25,23 @@ def generate_range_check(n,a,b):
         else:
             return False 
     return _range_check 
+#
+#   returns a function that will compare the value
+#   to a specified range 
+#   column must be in iso date format
+#   given in any valid ISO 8601 format, except ordinal dates (e.g. YYYY-DDD)
+#   https://docs.python.org/3/library/datetime.html?highlight=dateutil#datetime.date.fromisoformat
+#
+def generate_date_range_check(n,a,b):
+    min = date.fromisoformat(a)
+    max = date.fromisoformat(b)
+    def _date_range_check(n):
+        x = date.fromisoformat(n)
+        if x < min or x > max:
+            return False
+        else:
+            return True
+    return _date_range_check   
 #
 #   returns a function that tests for 0 len column
 #   True = 1+ characters

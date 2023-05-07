@@ -106,6 +106,10 @@ The stats section is used to enable cProfile statistics.
 *range:* specifies a numeric range 
 - range is specified as an array '[min,max]'
 
+*date_range:* specifies a date range test. True is returned if the date in questions is between the min and max values, inclusive.
+- range is specified as '[min,max]'
+  - both min and max are specified in ISO 88601 format, except ordinal format. 
+
 *regex:* a regular expression compatible with the Python pe library.
 
 *required:* specifies if content must be present
@@ -122,7 +126,6 @@ The stats section is used to enable cProfile statistics.
 - money - use regex to verify money format
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Appendix
 ### Example file.yaml

@@ -58,10 +58,18 @@ def build_flight_list(column_list,config_options,findings):
             # add range flight activity to working flight
             #
             if 'range' in working_option['test']:
+                
                 working_flight.append_flight_activity(flight_activity(
                     "range test",
                     f"column failed range test {working_option['test']['range'][0]},{working_option['test']['range'][1]}",
                     generate_range_check(0,working_option['test']['range'][0],working_option['test']['range'][1])))
+            #
+            if 'date_range' in working_option['test']:
+                
+                working_flight.append_flight_activity(flight_activity(
+                    "date range test",
+                    f"column failed range test {working_option['test']['date_range'][0]},{working_option['test']['date_range'][1]}",
+                    generate_date_range_check(0,working_option['test']['date_range'][0],working_option['test']['date_range'][1])))
             #
             # add type flight activity to working flight
             # all flights start as string

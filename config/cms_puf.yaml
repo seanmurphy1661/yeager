@@ -33,8 +33,9 @@ options:
       required: True
   - test:
       name: Attestation Success Date
-      type: string
-      width: [6, 8]
+      type: date
+      width: [10, 10]
+      date_range: ["2010-01-01","2022-01-01"]
       required: True
   - test:
       name: EHR Certification Number

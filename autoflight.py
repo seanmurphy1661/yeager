@@ -41,6 +41,7 @@ def main():
     print(f"Output configuration: {output_filename}")
     print(f"Overwrite flag: {overwrite_flag}")
     print(f"Sample size: {sample_size}")
+    print("Complete ----------------------------------------------")
     
     if exists(output_filename) and not overwrite_flag:
         print(f"File exists. quitting.")
