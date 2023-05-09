@@ -34,13 +34,25 @@ class data_reader:
     
     def number_of_columns(self):
         return self._number_of_columns
-    
-    def flight_test(self,test_flights,config,findings):
 
+    #
+    #   flight_test - apply the test_flights to the current data reader object (file to test)
+    #   inputs: 
+    #           test_flights object
+    #           config object
+    #           findings object
+    #
+    def flight_test(self,test_flights,config,findings):
+        #
+        if config.stats_enabled:
+            print(f"stats on") 
+        #
+        #   open the file
+        #
         with open(self.filename()) as f:
             reader = csv.reader(f)
             #
-            #   skip the first row because it iss the header
+            #   skip the first row because it is the header
             #
             next(reader)
             line_counter = 0
@@ -57,7 +69,7 @@ class data_reader:
                     continue
 
 
-                # valid row structure
+                # we have a valid row structure
                 # apply tests to the appropriate columns
                 for flight in test_flights:
 

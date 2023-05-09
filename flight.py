@@ -7,6 +7,7 @@ from activity_factory import *
 def build_flight_list(column_list,config_options,findings):
     flight_list = []
     column_number = 0
+    working_flight = object
     for working_option in config_options:
         if "test" in working_option:
             #

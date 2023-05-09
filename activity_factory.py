@@ -5,7 +5,7 @@ from datetime import date
 #   Name change
 #
 #   generate_range_check(n,a,b) - col between min / max (must be int)
-#   generate_date_range_check(n,a,b) - col between min / max (must be date)
+#   generate_date_range_check(n,a,b) - col between min / max (must be date ISO format)
 #   generate_required_check(n) - 0 len string
 #   generate_regex_check(n,regex_string) - any valid regex
 #   generate_regex_money_check(n) - money format 
@@ -74,7 +74,7 @@ def generate_regex_check(n,regex_string):
 #   False = no match
 #
 def generate_regex_money_check(n):
-    p = re.compile('/^-?\d+(,\d{3})*(\.\d{1,2})?$/')
+    p = re.compile("/^-{0,1}[0-9]+\\.{0,1}[0-9]{0,2}$/")
     def _regex_money_check(n):
         if p.match(n) == None:
             return False
