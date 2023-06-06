@@ -1,6 +1,7 @@
 __pycache__/
 .vscode/
 testdata/
+tools/
 .DS_Store
 findings/
 
